@@ -7,7 +7,7 @@ mod filesystem;
 mod ui;
 
 struct Config {
-    ui: AppUI
+    ui: AppUI,
 }
 
 fn main() -> glib::ExitCode {
@@ -23,7 +23,7 @@ fn main() -> glib::ExitCode {
             .title("Hello, World!")
             .build();
 
-        let label = Label::new(Some("Hello, World!"));
+        let label = Label::new(Some("Ola jessica como foi seu dia"));
         window.set_child(Some(&label));
         window.present();
     });

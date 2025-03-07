@@ -1,4 +1,4 @@
-use gtk4::{gio::Application, Application, ApplicationWindow};
+use gtk4::{gio::Application, ApplicationWindow};
 
 pub fn build_app() {
     let app = Application::new(Some(""), Default::default());

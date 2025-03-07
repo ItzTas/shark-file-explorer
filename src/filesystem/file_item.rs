@@ -30,4 +30,8 @@ impl FileItem {
             size,
         })
     }
+
+    pub fn get_name(&self) -> &str {
+        &self.name
+    }
 }

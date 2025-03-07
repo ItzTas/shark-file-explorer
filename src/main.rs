@@ -1,14 +1,15 @@
+use filesystem::manager::list;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow};
-use gtk4::{self as gtk, Label};
-use ui::app::AppUI;
+use gtk4::{self as gtk, Box, Label};
+// use ui::app::AppUI;
 
 mod filesystem;
-mod ui;
+// mod ui;
 
-struct Config {
-    ui: AppUI,
-}
+// struct Config {
+//     ui: AppUI,
+// }
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
@@ -23,8 +24,20 @@ fn main() -> glib::ExitCode {
             .title("Hello, World!")
             .build();
 
-        let label = Label::new(Some("Ola jessica como foi seu dia"));
-        window.set_child(Some(&label));
+        let vbox = Box::new(gtk::Orientation::Vertical, 5);
+
+        match list(".") {
+            Err(e) => print!("Error: {}\n", e),
+            Ok(file_items) => {
+                for file_item in file_items {
+                    print!("{}", file_item.get_name());
+                    let label = Label::new(Some(file_item.get_name()));
+                    vbox.append(&label);
+                }
+            }
+        }
+
+        window.set_child(Some(&vbox));
         window.present();
     });
 

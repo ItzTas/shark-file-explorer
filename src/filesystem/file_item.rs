@@ -31,6 +31,10 @@ impl FileItem {
         })
     }
 
+    pub fn is_dir(&self) -> bool {
+        self.is_dir
+    }
+
     pub fn get_name(&self) -> &str {
         &self.name
     }

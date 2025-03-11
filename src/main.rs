@@ -1,4 +1,5 @@
 use filesystem::manager::list;
+use global_config::config::GlobalConfig;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow};
 use gtk4::{self as gtk, Box, Label};
@@ -17,10 +18,17 @@ fn main() -> glib::ExitCode {
             .application(app)
             .default_width(320)
             .default_height(200)
-            .title("Hello, World!")
             .build();
 
         let vbox = Box::new(gtk::Orientation::Vertical, 5);
+
+        let _global_config = match GlobalConfig::new(String::from("."), &window, &app) {
+            Err(e) => {
+                println!("Error creatig global config: {}", e);
+                std::process::exit(1)
+            }
+            Ok(config) => config,
+        };
 
         match list(".") {
             Err(e) => print!("Error: {}\n", e),

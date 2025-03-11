@@ -2,14 +2,10 @@ use filesystem::manager::list;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow};
 use gtk4::{self as gtk, Box, Label};
-// use ui::app::AppUI;
 
 mod filesystem;
-// mod ui;
-
-// struct Config {
-//     ui: AppUI,
-// }
+mod global_config;
+mod ui;
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
